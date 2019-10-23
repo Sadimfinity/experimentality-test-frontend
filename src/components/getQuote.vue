@@ -56,6 +56,8 @@ export default {
           this.image = response.body.image
         })
         .catch((response) => {
+          this.quote = ''
+          this.image = ''
           this.snackbar = true
           this.text = '¡Error! El registro no se ha encontrado.'
           this.color = 'error'
