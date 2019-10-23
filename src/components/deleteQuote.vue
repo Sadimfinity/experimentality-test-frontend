@@ -15,24 +15,19 @@
               ></v-text-field>
               <v-btn
                 color="red"
+                v-on:click="deleteQuote()"
                 @click="snackbar = true"
-                v-on:click="deleteQuote"
               >Borrar registro</v-btn>
-                <v-snackbar
-                v-model="snackbar"
-                >
-                {{ text }}
+                <v-snackbar v-model="snackbar" :color="this.color">
+                {{ this.text }}
                 <v-btn
-                    color="pink"
+                    color="black"
                     text
                     @click="snackbar = false"
                 >
                     Close
                 </v-btn>
                 </v-snackbar>
-              <br>
-              <br>
-              <br>
             </v-card-actions>
             </v-card>
         </v-col>
@@ -47,13 +42,23 @@ export default {
   data: () => ({
     idOfQuote: '',
     snackbar: false,
-    text: 'Registro eliminado exitosamente'
+    text: '',
+    color: ''
   }),
   methods: {
     deleteQuote () {
       this.$http.delete(`http://localhost:8081/api/v1/deleteQuote/${this.idOfQuote}`)
         .then((response) => {
-          console.log(response.body)
+          this.text = 'Registro eliminado exitosamente.'
+          this.color = 'success'
+          console.log('Texto ', this.text)
+          console.log('Color ', this.color)
+        })
+        .catch(() => {
+          this.text = '¡Error! El registro no se ha encontrado.'
+          this.color = 'red'
+          console.log('Texto', this.text)
+          console.log('Color ', this.color)
         })
     }
   }

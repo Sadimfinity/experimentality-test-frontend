@@ -39,7 +39,6 @@ export default {
     getQuote () {
       this.$http.get(`http://localhost:8081/api/v1/generate-changing-life-quote`)
         .then((response) => {
-          console.log(response.body)
           this.quote = response.body.quote
           this.image = response.body.image
         })

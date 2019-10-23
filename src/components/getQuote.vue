@@ -19,7 +19,6 @@
               >Obtener registro</v-btn>
             </v-card-actions>
             <v-card-text class="headline black--text font-italic" align="center">{{ this.quote }}</v-card-text>
-            <br>
             <v-img v-bind:src="this.image"></v-img>
           </v-card>
         </v-col>
@@ -40,9 +39,10 @@ export default {
     getQuote () {
       this.$http.get(`http://localhost:8081/api/v1/getQuote/${this.idOfQuote}`)
         .then((response) => {
-          console.log(response.body)
           this.quote = response.body.quote
           this.image = response.body.image
+        })
+        .catch(() => {
         })
     }
   }
