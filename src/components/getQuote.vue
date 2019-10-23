@@ -17,6 +17,16 @@
                 color="green"
                 v-on:click="getQuote"
               >Obtener registro</v-btn>
+              <v-snackbar v-model="snackbar" :color="this.color">
+                {{ this.text }}
+                <v-btn
+                    color="black"
+                    text
+                    @click="snackbar = false"
+                >
+                    Close
+                </v-btn>
+                </v-snackbar>
             </v-card-actions>
             <v-card-text class="headline black--text font-italic" align="center">{{ this.quote }}</v-card-text>
             <v-img v-bind:src="this.image"></v-img>
@@ -33,7 +43,10 @@ export default {
   data: () => ({
     idOfQuote: '',
     quote: '',
-    image: ''
+    image: '',
+    text: '',
+    color: '',
+    snackbar: false
   }),
   methods: {
     getQuote () {
@@ -42,7 +55,10 @@ export default {
           this.quote = response.body.quote
           this.image = response.body.image
         })
-        .catch(() => {
+        .catch((response) => {
+          this.snackbar = true
+          this.text = '¡Error! El registro no se ha encontrado.'
+          this.color = 'error'
         })
     }
   }

@@ -51,14 +51,10 @@ export default {
         .then((response) => {
           this.text = 'Registro eliminado exitosamente.'
           this.color = 'success'
-          console.log('Texto ', this.text)
-          console.log('Color ', this.color)
         })
-        .catch(() => {
+        .catch((response) => {
           this.text = '¡Error! El registro no se ha encontrado.'
-          this.color = 'red'
-          console.log('Texto', this.text)
-          console.log('Color ', this.color)
+          this.color = 'error'
         })
     }
   }
