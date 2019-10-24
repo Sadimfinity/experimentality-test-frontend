@@ -50,7 +50,7 @@ export default {
   }),
   methods: {
     getQuote () {
-      this.$http.get(`http://localhost:8081/api/v1/getQuote/${this.idOfQuote}`)
+      this.$http.get(`http://localhost:8081/api/v1/get-record/${this.idOfQuote}`)
         .then((response) => {
           this.quote = response.body.quote
           this.image = response.body.image

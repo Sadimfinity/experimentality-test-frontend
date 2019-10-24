@@ -47,7 +47,7 @@ export default {
   }),
   methods: {
     deleteQuote () {
-      this.$http.delete(`http://localhost:8081/api/v1/deleteQuote/${this.idOfQuote}`)
+      this.$http.delete(`http://localhost:8081/api/v1/delete-record/${this.idOfQuote}`)
         .then((response) => {
           this.text = 'Registro eliminado exitosamente.'
           this.color = 'success'
